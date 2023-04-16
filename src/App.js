@@ -39,7 +39,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/first'>
+      <Router basename='/React'>
         <Navbar title="MyApp" mode={mode} toggleMode={toggleMode}/>
         <Alert alert={alert}/>
         {/* <div className="container my-3">
@@ -49,7 +49,7 @@ function App() {
       
         <Routes>
           <Route exact path='/about' element={<About mode={mode}/>} />
-          <Route exact path='/first' element={
+          <Route exact path='/React' element={
             <div className="container my-3">
               <TextForm heading="Enter the text : " mode={mode} showAlert={showAlert}/>  
             </div>
