@@ -30,7 +30,7 @@ export default function TextForm(props) {
       return(blank);
     }
     else{
-      let word = text.split(" ");
+      let word = text.split(/\s+/);
       word = word.filter(function(entry) { return entry.trim() !== ''; });
       return(word.length);
     }
@@ -39,8 +39,9 @@ export default function TextForm(props) {
   const handleSpace = () => {
     let c = 0; 
     let word = text;
+    
     for (let i = 0; i < word.length; i++) {
-      if (word[i] === " ") {
+      if (word[i] === " " || word[i] === "\n") {
         continue;
       }
       else{
@@ -66,16 +67,16 @@ export default function TextForm(props) {
       <div className="input-group">
       <textarea className="form-control" id="tb" value={text} onChange={onTextChange} style={{backgroundColor: props.mode === 'dark' ? 'grey': 'white', color:props.mode === 'light' ? 'black': 'white'}} aria-label="With textarea" rows="10"></textarea>
       </div>
-      <button className="btn btn-primary my-3" onClick={handleUpClick}>Convert to UpperCase</button>
-      <button className="btn btn-primary my-3 mx-2" onClick={handleLoClick}>Convert to LowerCase</button>
-      <button className="btn btn-primary my-3 mx-2" onClick={handleClear}>Clear Text</button>
-      <button className="btn btn-primary my-3 mx-2" onClick={handleCopy}>Copy Text</button>
+      <button disabled={text.length===0} className="btn btn-primary my-3" onClick={handleUpClick}>Convert to UpperCase</button>
+      <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleLoClick}>Convert to LowerCase</button>
+      <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleClear}>Clear Text</button>
+      <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleCopy}>Copy Text</button>
     </div>
     <div className="container" style={{color:props.mode === 'light' ? 'black': 'white'}}>
       <h2>Text Summary</h2>
       <p>{a} words and {s} characters</p>
       <h3>Preview</h3>
-      <p>{text.length>0 ? text : "Enter something in the textbox to preview"}</p>
+      <p>{text.length>0 ? text : "Nothing to perview"}</p>
     </div>
     </>
   )
